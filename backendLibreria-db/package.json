@@ -20,6 +20,8 @@
     "standard": "^11.0.1"
   },
   "dependencies": {
+    "defaults": "^1.0.3",
+    "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
   }
 }
