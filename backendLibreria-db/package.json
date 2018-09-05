@@ -4,6 +4,7 @@
   "description": "Backend de proyecto de libreria en Nodejs bajo Rsst Full -Modulo de Base de datos ",
   "main": "index.js",
   "scripts": {
+    "setup": "DEBUG=platzoverse:* node setup",
     "lint": "standard"
   },
   "repository": {
@@ -20,7 +21,9 @@
     "standard": "^11.0.1"
   },
   "dependencies": {
+    "chalk": "^2.4.1",
     "defaults": "^1.0.3",
+    "inquirer": "^6.2.0",
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
   }
