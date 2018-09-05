@@ -1,1 +1,3 @@
 /backendLibreria-db/node_modules/*
+/backendLibreria-db/coverage/
+/backendLibreria-db/.nyc_output/*

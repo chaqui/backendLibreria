@@ -29,6 +29,8 @@ const setuptT_SaldoPagadoModel = require('./models/TT_SaldoPagado')
 const setuptT_ServicioVendidoModel = require('./models/TT_ServicioVendido')
 const setuptT_VentaModel = require('./models/TT_Venta')
 
+const defaults = require('defaults')
+
 /* Modulo de exportación y configuración de backendmodelsreria
  * @constructor
  * @param {config} config - configuracion de la base de datos
@@ -36,8 +38,21 @@ const setuptT_VentaModel = require('./models/TT_Venta')
  *
 */
 module.exports = async function (config) {
+  // configuración default para pruebas
+  config = defaults(config, {
+    dialect: 'sqlite',
+    pool: {
+      max: 10,
+      min: 0,
+      idle: 10000
+    },
+    query: {
+      raw: true
+    }
+  }
+  )
   const sequelize = setupDatabase(config)
- 
+
   // creación de las variables por modelos
 
   const tC_PersonaModel = setuptC_PersonaModel(config)
