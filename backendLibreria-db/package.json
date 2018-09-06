@@ -4,8 +4,8 @@
   "description": "Backend de proyecto de libreria en Nodejs bajo Rsst Full -Modulo de Base de datos ",
   "main": "index.js",
   "scripts": {
-    "test": "DEBUG=platzoverse:* nyc --report-dir=coverage/ --reporter=lcov ava tests/ --verbose",
-    "setup": "DEBUG=platzoverse:* node setup",
+    "test": "DEBUG=backendLibreria:* nyc --report-dir=coverage/ --reporter=lcov ava tests/ --verbose",
+    "setup": "DEBUG=backendLibreria:* node setup",
     "lint": "standard"
   },
   "repository": {
