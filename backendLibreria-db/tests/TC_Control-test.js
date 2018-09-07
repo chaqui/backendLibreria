@@ -17,5 +17,5 @@ test.beforeEach(async () => {
 })
 
 test('Control', t => {
-  t.truthy(db.TC_Control, 'Control service should exist')
+  t.truthy(db.TCControl, 'Control service should exist')
 })

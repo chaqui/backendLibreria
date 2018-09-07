@@ -2,7 +2,7 @@
 
 const setupDatabase = require('../lib/db')
 
-module.exports = function setupTC_Administrador (config) {
+module.exports = function setupTCAdministrador (config) {
   const sequelize = setupDatabase(config)
   return sequelize.define('TC_Administrador', {
 

@@ -1,6 +1,10 @@
 'use strict'
 
 module.exports = function stubs () {
+  let tCAdministradorSub = {
+    asMany: function () {},
+    belongsTo: function () {}
+  }
   let tCUsuarioSub = {
     hasMany: function () {},
     belongsTo: function () {}
@@ -28,6 +32,10 @@ module.exports = function stubs () {
   }
 
   let tCMarcaSub = {
+    hasMany: function () {},
+    belongsTo: function () {}
+  }
+  let tcProductoSub = {
     hasMany: function () {},
     belongsTo: function () {}
   }
@@ -95,7 +103,14 @@ module.exports = function stubs () {
     belongsTo: function () {}
   }
 
+  let tCPersonaSub = {
+    hasMany: function () {},
+    belongsTo: function () {}
+  }
+
   return {
+    tCPersonaSub,
+    tCAdministradorSub,
     tCUsuarioSub,
     tCClienteSub,
     tCRepresentanteSub,
@@ -104,6 +119,7 @@ module.exports = function stubs () {
     tCCategoriaSub,
     tCMarcaSub,
     tCProductoSucursalSub,
+    tcProductoSub,
     tCProveedorStub,
     tCServicioSub,
     tCSucursalSub,
