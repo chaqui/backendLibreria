@@ -31,6 +31,9 @@ const setuptTVentaModel = require('./models/TT_Venta')
 
 const defaults = require('defaults')
 
+// import de librerias para las fucniones del modelo
+const setupPersona = require('./lib/TC_Persona')
+
 /* Modulo de exportación y configuración de backendmodelsreria
  * @constructor
  * @param {config} config - configuracion de la base de datos
@@ -199,7 +202,7 @@ module.exports = async function (config) {
   const TCCliente = {}
   const TCControl = {}
   const TCMarca = {}
-  const TCPersona = {}
+  const TCPersona = setupPersona(tCPersonaModel)
   const TCProducto = {}
   const TCProductoSucursal = {}
   const TCProveedor = {}

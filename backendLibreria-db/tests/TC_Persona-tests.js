@@ -9,17 +9,26 @@ let config = {
 }
 
 let db = null
-let tcPersomaSub = null
+let tcPersonaStub = null
 let sandbox = null
-
+let tcProductoSub = {
+  hasMany: function () {},
+  belongsTo: function () {}
+}
 test.beforeEach(async () => {
   sandbox = sinon.sandbox.create()
-  tcPersomaSub = {
+  tcPersonaStub = {
     hasMany: sandbox.spy(),
     belongsTo: sandbox.spy()
   }
 
   const setupDatabase = proxyrequire('../', {
+    './models/TC_Control': () => stubs.tcControlSub,
+    './models/TC_Persona': () => tcPersonaStub,
+    './models/TC_Producto': () => tcProductoSub,
+    './models/TC_Usuario': () => stubs.tCUsuarioSub,
+    './models/TC_Cliente': () => stubs.tCClienteSub,
+    './models/TC_Representante': () => stubs.tCRepresentanteSub
   })
   db = await setupDatabase(config)
 })
