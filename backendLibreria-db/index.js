@@ -152,7 +152,7 @@ module.exports = async function (config) {
   tTServicioVendidoModel.belongsTo(tTdescripcionVentaModel)
 
   // Relaciones de TTProductoVendido
-  tTproductoVendidoModel.belongsTo(tCProductoModel)
+  tTproductoVendidoModel.belongsTo(tCProductoSucursalModel)
   tTproductoVendidoModel.belongsTo(tTdescripcionVentaModel)
 
   // Relaciones de TCProductoSucursal
