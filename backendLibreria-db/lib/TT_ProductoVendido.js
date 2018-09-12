@@ -8,10 +8,6 @@ module.exports = function setupProductoVendido (TTproductoVendido) {
   // @params productoVendido
 
   async function create (productoVendido) {
-    let productoVendidoE = findById(productoVendido.id)
-    if (productoVendidoE) {
-      return 0
-    }
     const result = await TTproductoVendido.create(productoVendido)
     return result.toJSON()
   }
@@ -28,6 +24,10 @@ module.exports = function setupProductoVendido (TTproductoVendido) {
     return result.toJSON()
   }
 
+  function findAll () {
+    return TTproductoVendido.findAll()
+  }
+
   async function update (productoVendido) {
     const cond = {
       where: {
@@ -36,13 +36,14 @@ module.exports = function setupProductoVendido (TTproductoVendido) {
     }
 
     const update = await TTproductoVendido.update(productoVendido, cond)
-    return update ? TTproductoVendido.findOne(cond): existingproductoVendido
+    return update
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

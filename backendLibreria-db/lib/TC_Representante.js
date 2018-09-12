@@ -8,10 +8,6 @@ module.exports = function setupRepresentante (TCRepresentanteModel) {
   // @params representante
 
   async function create (representante) {
-    let representanteE = findById(representante.id)
-    if (representanteE) {
-      return 0
-    }
     const result = await TCRepresentanteModel.create(representante)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupRepresentante (TCRepresentanteModel) {
     }
 
     const update = await TCRepresentanteModel.update(representante, cond)
-    return update ? TCRepresentanteModel.findOne(cond): existingrepresentante
+    return update
+  }
+
+  function findAll () {
+    return TCRepresentanteModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

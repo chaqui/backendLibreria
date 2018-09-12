@@ -8,10 +8,6 @@ module.exports = function setupCajaTienda (TTCajaTiendaModel) {
   // @params cajaTienda
 
   async function create (cajaTienda) {
-    let cajaTiendaE = findById(cajaTienda.id)
-    if (cajaTiendaE) {
-      return 0
-    }
     const result = await TTCajaTiendaModel.create(cajaTienda)
     return result.toJSON()
   }
@@ -36,13 +32,17 @@ module.exports = function setupCajaTienda (TTCajaTiendaModel) {
     }
 
     const update = await TTCajaTiendaModel.update(cajaTienda, cond)
-    return update ? TTCajaTiendaModel.findOne(cond): existingcajaTienda
+    return update
   }
 
+  function findAll () {
+    return TTCajaTiendaModel.findAll()
+  }
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

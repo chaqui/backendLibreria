@@ -8,10 +8,6 @@ module.exports = function setupProductoSucursal (TCProductoSucursalModel) {
   // @params productoSucursal
 
   async function create (productoSucursal) {
-    let productoSucursalE = findById(productoSucursal.id)
-    if (productoSucursalE) {
-      return 0
-    }
     const result = await TCProductoSucursalModel.create(productoSucursal)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupProductoSucursal (TCProductoSucursalModel) {
     }
 
     const update = await TCProductoSucursalModel.update(productoSucursal, cond)
-    return update ? TCProductoSucursalModel.findOne(cond): existingproductoSucursal
+    return update
+  }
+
+  function findAll () {
+    return TCProductoSucursalModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

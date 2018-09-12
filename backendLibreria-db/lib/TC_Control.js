@@ -8,10 +8,6 @@ module.exports = function setupControl (TCControlModel) {
   // @params control
 
   async function create (control) {
-    let controlE = findById(control.id)
-    if (controlE) {
-      return 0
-    }
     const result = await TCControlModel.create(control)
     return result.toJSON()
   }
@@ -36,7 +32,7 @@ module.exports = function setupControl (TCControlModel) {
     }
 
     const update = await TCControlModel.update(control, cond)
-    return update ? TCControlModel.findOne(cond): existingcontrol
+    return update
   }
 
   return {

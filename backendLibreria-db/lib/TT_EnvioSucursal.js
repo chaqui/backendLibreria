@@ -8,10 +8,6 @@ module.exports = function setupEnvioSucursal (TTEnvioSucursalModel) {
   // @params envioSucursal
 
   async function create (envioSucursal) {
-    let envioSucursalE = findById(envioSucursal.id)
-    if (envioSucursalE) {
-      return 0
-    }
     const result = await TTEnvioSucursalModel.create(envioSucursal)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupEnvioSucursal (TTEnvioSucursalModel) {
     }
 
     const update = await TTEnvioSucursalModel.update(envioSucursal, cond)
-    return update ? TTEnvioSucursalModel.findOne(cond): existingenvioSucursal
+    return update
+  }
+
+  function findAll () {
+    return TTEnvioSucursalModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

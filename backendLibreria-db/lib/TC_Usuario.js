@@ -8,10 +8,6 @@ module.exports = function setupUsuario (TCUsuarioModel) {
   // @params usuario
 
   async function create (usuario) {
-    let usuarioE = findById(usuario.id)
-    if (usuarioE) {
-      return 0
-    }
     const result = await TCUsuarioModel.create(usuario)
     return result.toJSON()
   }
@@ -36,13 +32,17 @@ module.exports = function setupUsuario (TCUsuarioModel) {
     }
 
     const update = await TCUsuarioModel.update(usuario, cond)
-    return update ? TCUsuarioModel.findOne(cond): existingusuario
+    return update
   }
 
+  function findAll () {
+    return TCUsuarioModel.findAll()
+  }
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

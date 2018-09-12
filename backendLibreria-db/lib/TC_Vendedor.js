@@ -8,10 +8,6 @@ module.exports = function setupvendedor (TCVendendorModel) {
   // @params vendedor
 
   async function create (vendedor) {
-    let vendedorE = findById(vendedor.id)
-    if (vendedorE) {
-      return 0
-    }
     const result = await TCVendendorModel.create(vendedor)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupvendedor (TCVendendorModel) {
     }
 
     const update = await TCVendendorModel.update(vendedor, cond)
-    return update ? TCVendendorModel.findOne(cond): existingvendedor
+    return update
+  }
+
+  function findAll () {
+    return TCVendendorModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

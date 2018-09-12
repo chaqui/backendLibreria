@@ -6,10 +6,6 @@ module.exports = function setupTCCategoria (TCCategorialModel) {
     return result.toJSON
   }
   async function create (categoria) {
-    let categoriaE = findById(categoria.id)
-    if (categoriaE) {
-      return 0
-    }
     const result = await TCCategorialModel.create(categoria)
     return result.toJSON()
   }
@@ -34,14 +30,19 @@ module.exports = function setupTCCategoria (TCCategorialModel) {
     }
 
     const update = await TCCategorialModel.update(categoria, cond)
-    return update ? TCCategorialModel.findOne(cond): existingcategoria
+    return update
+  }
+  
+  function findAll () {
+    return TCCategorialModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 
     

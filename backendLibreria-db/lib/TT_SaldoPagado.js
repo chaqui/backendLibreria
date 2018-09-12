@@ -8,10 +8,6 @@ module.exports = function setupSaldoPagado (TTSaldoPagado) {
   // @params saldoPagado
 
   async function create (saldoPagado) {
-    let saldoPagadoE = findById(saldoPagado.id)
-    if (saldoPagadoE) {
-      return 0
-    }
     const result = await TTSaldoPagado.create(saldoPagado)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupSaldoPagado (TTSaldoPagado) {
     }
 
     const update = await TTSaldoPagado.update(saldoPagado, cond)
-    return update ? TTSaldoPagado.findOne(cond): existingsaldoPagado
+    return update
+  }
+
+  function findAll () {
+    return TTSaldoPagado.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

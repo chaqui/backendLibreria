@@ -8,10 +8,6 @@ module.exports = function setupIngreso (TTingresoModel) {
   // @params ingreso
 
   async function create (ingreso) {
-    let ingresoE = findById(ingreso.id)
-    if (ingresoE) {
-      return 0
-    }
     const result = await TTingresoModel.create(ingreso)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupIngreso (TTingresoModel) {
     }
 
     const update = await TTingresoModel.update(ingreso, cond)
-    return update ? TTingresoModel.findOne(cond): existingingreso
+    return update
+  }
+
+  function findAll () {
+    return TTingresoModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

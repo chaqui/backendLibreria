@@ -8,10 +8,6 @@ module.exports = function setupServicio (TCServicioModel) {
   // @params servicio
 
   async function create (servicio) {
-    let servicioE = findById(servicio.id)
-    if (servicioE) {
-      return 0
-    }
     const result = await TCServicioModel.create(servicio)
     return result.toJSON()
   }
@@ -36,13 +32,17 @@ module.exports = function setupServicio (TCServicioModel) {
     }
 
     const update = await TCServicioModel.update(servicio, cond)
-    return update ? TCServicioModel.findOne(cond): existingservicio
+    return update
   }
 
+  function findAll () {
+    return TCServicioModel.findAll()
+  }
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

@@ -8,10 +8,6 @@ module.exports = function setupSucursal (TCSucursalModel) {
   // @params sucursal
 
   async function create (sucursal) {
-    let sucursalE = findById(sucursal.id)
-    if (sucursalE) {
-      return 0
-    }
     const result = await TCSucursalModel.create(sucursal)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupSucursal (TCSucursalModel) {
     }
 
     const update = await TCSucursalModel.update(sucursal, cond)
-    return update ? TCSucursalModel.findOne(cond): existingsucursal
+    return update
+  }
+
+  function findAll () {
+    return TCSucursalModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

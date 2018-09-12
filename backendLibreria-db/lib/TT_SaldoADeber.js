@@ -8,10 +8,6 @@ module.exports = function setupSaldoADeber (TTsaldoADeber) {
   // @params saldoADeber
 
   async function create (saldoADeber) {
-    let saldoADeberE = findById(saldoADeber.id)
-    if (saldoADeberE) {
-      return 0
-    }
     const result = await TTsaldoADeber.create(saldoADeber)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupSaldoADeber (TTsaldoADeber) {
     }
 
     const update = await TTsaldoADeber.update(saldoADeber, cond)
-    return update ? TTsaldoADeber.findOne(cond): existingsaldoADeber
+    return update
+  }
+
+  function findAll () {
+    return TTsaldoADeber.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

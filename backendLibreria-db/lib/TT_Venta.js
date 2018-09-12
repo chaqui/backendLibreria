@@ -8,10 +8,6 @@ module.exports = function setupVenta (TTVentaModel) {
   // @params venta
 
   async function create (venta) {
-    let ventaE = findById(venta.id)
-    if (ventaE) {
-      return 0
-    }
     const result = await TTVentaModel.create(venta)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupVenta (TTVentaModel) {
     }
 
     const update = await TTVentaModel.update(venta, cond)
-    return update ? TTVentaModel.findOne(cond): existingventa
+    return update
+  }
+
+  function findAll () {
+    return TTVentaModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

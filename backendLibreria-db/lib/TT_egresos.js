@@ -8,10 +8,6 @@ module.exports = function setupEgresos (TTEgresosModel) {
   // @params egresos
 
   async function create (egresos) {
-    let egresosE = findById(egresos.id)
-    if (egresosE) {
-      return 0
-    }
     const result = await TTEgresosModel.create(egresos)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupEgresos (TTEgresosModel) {
     }
 
     const update = await TTEgresosModel.update(egresos, cond)
-    return update ? TTEgresosModel.findOne(cond): existingegresos
+    return update
+  }
+
+  function findAll () {
+    return TTEgresosModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

@@ -8,10 +8,6 @@ module.exports = function setupProveedor (TCProveedorModel) {
   // @params proveedor
 
   async function create (proveedor) {
-    let proveedorE = findById(proveedor.id)
-    if (proveedorE) {
-      return 0
-    }
     const result = await TCProveedorModel.create(proveedor)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupProveedor (TCProveedorModel) {
     }
 
     const update = await TCProveedorModel.update(proveedor, cond)
-    return update ? TCProveedorModel.findOne(cond): existingproveedor
+    return update
+  }
+
+  function findAll () {
+    return TCProveedorModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

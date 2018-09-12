@@ -8,10 +8,6 @@ module.exports = function setupMarca (TCMarcaModel) {
   // @params marca
 
   async function create (marca) {
-    let marcaE = findById(marca.id)
-    if (marcaE) {
-      return 0
-    }
     const result = await TCMarcaModel.create(marca)
     return result.toJSON()
   }
@@ -36,7 +32,7 @@ module.exports = function setupMarca (TCMarcaModel) {
     }
 
     const update = await TCMarcaModel.update(marca, cond)
-    return update ? TCMarcaModel.findOne(cond): existingmarca
+    return update
   }
 
   return {

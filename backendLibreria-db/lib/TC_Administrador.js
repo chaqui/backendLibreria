@@ -8,10 +8,6 @@ module.exports = function setupAdministrador (TCAdministradorModel) {
   // @params administrador
 
   async function create (administrador) {
-    let administradorE = findById(administrador.id)
-    if (administradorE) {
-      return 0
-    }
     const result = await TCAdministradorModel.create(administrador)
     return result.toJSON()
   }
@@ -36,13 +32,19 @@ module.exports = function setupAdministrador (TCAdministradorModel) {
     }
 
     const update = await TCAdministradorModel.update(administrador, cond)
-    return update ? TCAdministradorModel.findOne(cond): existingadministrador
+    return update
   }
+
+  function findAll () {
+    return TCAdministradorModel.findAll()
+  }
+
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }

@@ -6,10 +6,6 @@ module.exports = function setupCliente (TCClienteModel) {
     return result.toJSON
   }
   async function create (cliente) {
-    let clienteE = findById(cliente.id)
-    if (clienteE) {
-      return 0
-    }
     const result = await TCClienteModel.create(cliente)
     return result.toJSON()
   }
@@ -34,7 +30,7 @@ module.exports = function setupCliente (TCClienteModel) {
     }
 
     const update = await TCClienteModel.update(cliente, cond)
-    return update ? TCClienteModel.findOne(cond): existingcliente
+    return update
   }
 
   return {

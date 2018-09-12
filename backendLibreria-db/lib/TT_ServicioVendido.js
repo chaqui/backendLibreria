@@ -8,10 +8,6 @@ module.exports = function setupServicioVendido (TTServicioVendidoModel) {
   // @params servicioVendido
 
   async function create (servicioVendido) {
-    let servicioVendidoE = findById(servicioVendido.id)
-    if (servicioVendidoE) {
-      return 0
-    }
     const result = await TTServicioVendidoModel.create(servicioVendido)
     return result.toJSON()
   }
@@ -36,13 +32,18 @@ module.exports = function setupServicioVendido (TTServicioVendidoModel) {
     }
 
     const update = await TTServicioVendidoModel.update(servicioVendido, cond)
-    return update ? TTServicioVendidoModel.findOne(cond): existingservicioVendido
+    return update
+  }
+
+  function findAll () {
+    return TTServicioVendidoModel.findAll()
   }
 
   return {
     findById,
     create,
     findByNombre,
-    update
+    update,
+    findAll
   }
 }
