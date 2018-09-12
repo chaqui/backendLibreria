@@ -32,7 +32,31 @@ const setuptTVentaModel = require('./models/TT_Venta')
 const defaults = require('defaults')
 
 // import de librerias para las fucniones del modelo
+
+const setupCategoria = require('./lib/TC_Categoria')
+const setupCliente = require('./lib/TC_Cliente')
+const setupControl = require('./lib/TC_Control')
+const setupMarca = require('./lib/TC_Marca')
 const setupPersona = require('./lib/TC_Persona')
+const setupProducto = require('./lib/TC_Producto')
+const setuptCProductoSucursal = require('./lib/TC_ProductoSucursal')
+const setupProveedor = require('./lib/TC_Proveedor')
+const setupRepresentante = require('./lib/TC_Representante')
+const setupServicio = require('./lib/TC_Servicio')
+const setupSucursal = require('./lib/TC_Sucursal')
+const setupUsuario = require('./lib/TC_Usuario')
+const setupVendedor = require('./lib/TC_Vendedor')
+const setupCajaTienda = require('./lib/TT_CajaTienda')
+const setupDescripcionVenta = require('./lib/TT_DescripcionVenta')
+const setupEgresoos = require('./lib/TT_egresos')
+const setupEnvioASucursal = require('./lib/TT_EnvioSucursal')
+const setupIngresos = require('./lib/TT_ingresos')
+const setupProductoVendio = require('./lib/TT_ProductoVendido')
+const setupSaldoADeber = require('./lib/TT_SaldoADeber')
+const setupSaldoPagado = require('./lib/TT_SaldoPagado')
+const setupServicioVendido = require('./lib/TT_ServicioVendido')
+const setupVenta = require('./lib/TT_Venta')
+const setupAdministrador = require('./lib/TC_Administrador')
 
 /* Modulo de exportación y configuración de backendmodelsreria
  * @constructor
@@ -197,30 +221,30 @@ module.exports = async function (config) {
   tCRepresentanteModel.hasMany(tCProveedorModel)
   tCRepresentanteModel.belongsTo(tCPersonaModel)
 
-  const tCAdministrador = {}
-  const TCCategoria = {}
-  const TCCliente = {}
-  const TCControl = {}
-  const TCMarca = {}
+  const tCAdministrador = setupAdministrador(tCAdministradorModel)
+  const TCCategoria = setupCategoria(tCCategoriaModel)
+  const TCCliente = setupCliente(tCClienteModel)
+  const TCControl = setupControl(tCControlModel)
+  const TCMarca = setupMarca(tCMarcaModel)
   const TCPersona = setupPersona(tCPersonaModel)
-  const TCProducto = {}
-  const TCProductoSucursal = {}
-  const TCProveedor = {}
-  const TCRepresentante = {}
-  const TCServicio = {}
-  const TCSucursal = {}
-  const TCUsuario = {}
-  const TCVendedor = {}
-  const TTCajaTienda = {}
-  const TTdescripcionVenta = {}
-  const TTegresos = {}
-  const TTenvioASucursal = {}
-  const TTingresos = {}
-  const TTproductoVendido = {}
-  const TTSaldoADeber = {}
-  const TTSaldoPagado = {}
-  const TTServicioVendido = {}
-  const TTVenta = {}
+  const TCProducto = setupProducto(tCProductoModel)
+  const TCProductoSucursal = setuptCProductoSucursal(tCProductoSucursalModel)
+  const TCProveedor = setupProveedor(tCProveedorModel)
+  const TCRepresentante = setupRepresentante(tCRepresentanteModel)
+  const TCServicio = setupServicio(tCServicioModel)
+  const TCSucursal = setupSucursal(tCSucursalModel)
+  const TCUsuario = setupUsuario(tCUsuarioModel)
+  const TCVendedor = setupVendedor(tCVendedorModel)
+  const TTCajaTienda = setupCajaTienda(tTCajaTiendaModel)
+  const TTdescripcionVenta = setupDescripcionVenta(tTdescripcionVentaModel)
+  const TTegresos = setupEgresoos(tTegresosModel)
+  const TTenvioASucursal = setupEnvioASucursal(tTenvioASucursalModel)
+  const TTingresos = setupIngresos(tTegresosModel)
+  const TTproductoVendido = setupProductoVendio(tTproductoVendidoModel)
+  const TTSaldoADeber = setupSaldoADeber(tTSaldoADeberModel)
+  const TTSaldoPagado = setupSaldoPagado(tTSaldoPagadoModel)
+  const TTServicioVendido = setupServicioVendido(tTServicioVendidoModel)
+  const TTVenta = setupVenta(tTVentaModel)
 
   await sequelize.authenticate()
 
