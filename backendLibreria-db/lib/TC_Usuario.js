@@ -5,29 +5,45 @@ module.exports = function setupUsuario (TCUsuarioModel) {
     const result = TCUsuarioModel.findById(id)
     return result.toJSON
   }
-  // @params usuario
-
+  /**
+    * @param { nickname: 'pepito', contrasenia: 'hola123', autorizado: true, TCPersonaId: 1 } usuario
+    * @example
+    * create({
+      nickname: 'pepito',
+      contrasenia: 'hola123',
+      autorizado: true,
+      TCPersonaId: 1
+    })
+    */
   async function create (usuario) {
     const result = await TCUsuarioModel.create(usuario)
     return result.toJSON()
   }
-
-  function findByNombre (usuario) {
+  /**
+    *
+    * @param { nickname: 'pepito'} usuario
+    */
+  function findByNickName (usuario) {
     const cond = {
       where:
       {
-        primerNombre: usuario.primerNombre,
-        segundoNombre: usuario.segundoNombre
+        nickname: usuario.nickname
       }
     }
-    const result = TCUsuarioModel.findOne(cond)
-    return result.toJSON()
+    const result = TCUsuarioModel.findAll(cond)
+    return result
   }
 
-  async function update (usuario) {
+  /**
+   *
+   * @param { nickname: 'pepo'} usuario
+   * @param {string} nickname
+   * @returns {number} numero de filas cambiadas
+   */
+  async function update (usuario, nickname) {
     const cond = {
       where: {
-        id: usuario.id
+        nickname: nickname
       }
     }
 
@@ -35,13 +51,16 @@ module.exports = function setupUsuario (TCUsuarioModel) {
     return update
   }
 
+  /**
+   * @returns {object} objeto con todos los usuarios encontrados
+   */
   function findAll () {
     return TCUsuarioModel.findAll()
   }
   return {
     findById,
     create,
-    findByNombre,
+    findByNickName,
     update,
     findAll
   }

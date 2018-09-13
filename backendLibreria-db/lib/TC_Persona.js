@@ -4,8 +4,12 @@ module.exports = function setupPersona (TCpersonaModel) {
   function findById (id) {
     return TCpersonaModel.findById(id)
   }
-  // @params persona
 
+  /**
+   *
+   * @param {primerNombre: '', segundoNombre: '', primerApellido: '', segundoApellido: '', telefono: '', direccion: '' }} persona 
+   * @returns {object} persona creada
+   */
   async function create (persona) {
     const result = await TCpersonaModel.create(persona)
     return result.toJSON()
@@ -23,7 +27,7 @@ module.exports = function setupPersona (TCpersonaModel) {
         segundoNombre: persona.segundoNombre
       }
     }
-    const result = TCpersonaModel.findOne(cond)
+    const result = TCpersonaModel.findAll(cond)
     return result.toJSON()
   }
 
