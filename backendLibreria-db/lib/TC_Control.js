@@ -5,23 +5,30 @@ module.exports = function setupControl (TCControlModel) {
     const result = TCControlModel.findById(id)
     return result.toJSON
   }
-  // @params control
 
+  /**
+   *
+   * @param {fechayHora:Date, TCUsuarioid: 1} control
+   * @returns {TC_Control} control creado en la base de datos
+   */
   async function create (control) {
     const result = await TCControlModel.create(control)
     return result.toJSON()
   }
-
-  function findByNombre (control) {
+  /**
+   *
+   * @param {Date} fechayHora
+   * @returns {TC_Control} Control encontrado con la fecha buscada
+   */
+  function findByDate (fechayHora) {
     const cond = {
       where:
       {
-        primerNombre: control.primerNombre,
-        segundoNombre: control.segundoNombre
+        fechayHora
       }
     }
-    const result = TCControlModel.findOne(cond)
-    return result.toJSON()
+    const result = TCControlModel.findAll(cond)
+    return result
   }
 
   async function update (control) {
@@ -35,10 +42,18 @@ module.exports = function setupControl (TCControlModel) {
     return update
   }
 
+  /**
+   * @returns {Array} todos los controles almacenados en la Base de Datos
+   */
+  function findAll () {
+    return TCControlModel.findAll()
+  }
+
   return {
     findById,
     create,
-    findByNombre,
-    update
+    findByDate,
+    update,
+    findAll
   }
 }

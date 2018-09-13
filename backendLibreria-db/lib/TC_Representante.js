@@ -51,6 +51,7 @@ module.exports = function setupRepresentante (TCRepresentanteModel) {
     const update = await TCRepresentanteModel.update(representante, cond)
     return update
   }
+
   /**
    * @returns {array} todos los representantes almacenados en la base de datos
    */
