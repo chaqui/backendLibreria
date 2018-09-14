@@ -31,6 +31,11 @@ module.exports = function setupControl (TCControlModel) {
     return result
   }
 
+  /**
+   *
+   * @param {object} control a modificar
+   * @returns {int} cantidad de filas cambiadas
+   */
   async function update (control) {
     const cond = {
       where: {
