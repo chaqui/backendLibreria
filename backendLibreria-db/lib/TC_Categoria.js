@@ -1,27 +1,46 @@
 'use strict'
 
 module.exports = function setupTCCategoria (TCCategorialModel) {
+  /**
+   *
+   * @param {int} id de la categoria
+   * @returns {object} categoria encontrada
+   */
   function findById (id) {
     const result = TCCategorialModel.findById(id)
-    return result.toJSON
+    return result
   }
+
+  /**
+   *
+   * @param {nombre:""} categoria
+   */
   async function create (categoria) {
     const result = await TCCategorialModel.create(categoria)
     return result.toJSON()
   }
 
-  function findByNombre (categoria) {
+  /**
+   *
+   * @param {tring} nombre
+   * @returns {Array} categorias encontradas con el nombre
+   */
+  function findByNombre (nombre) {
     const cond = {
       where:
       {
-        primerNombre: categoria.primerNombre,
-        segundoNombre: categoria.segundoNombre
+        nombre
       }
     }
-    const result = TCCategorialModel.findOne(cond)
-    return result.toJSON()
+    const result = TCCategorialModel.findAll(cond)
+    return result
   }
 
+  /**
+   *
+   * @param {nombre: '', id: 1} categoria
+   * @returns {int} cantidad de filas modificads
+   */
   async function update (categoria) {
     const cond = {
       where: {
@@ -32,7 +51,10 @@ module.exports = function setupTCCategoria (TCCategorialModel) {
     const update = await TCCategorialModel.update(categoria, cond)
     return update
   }
-  
+
+  /**
+   * @returns {Array} todas las categorias
+   */
   function findAll () {
     return TCCategorialModel.findAll()
   }

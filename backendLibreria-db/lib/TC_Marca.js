@@ -18,7 +18,7 @@ module.exports = function setupMarca (TCMarcaModel) {
    */
   async function create (marca) {
     const result = await TCMarcaModel.create(marca)
-    return result.toJSON()
+    return result
   }
 
   /**
