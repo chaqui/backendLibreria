@@ -1,29 +1,46 @@
 'use strict'
 
 module.exports = function setupProveedor (TCProveedorModel) {
+  /**
+   * 
+   * @param {int} id del proveedor a buscar
+   * @returns {object} roveedor encontrado
+   */
   function findById (id) {
     const result = TCProveedorModel.findById(id)
-    return result.toJSON
+    return result
   }
-  // @params proveedor
 
+  /**
+   * 
+   * @param { nombre: '', nit: '', direccion: '', descripcion: '', telefono: '', TCRepresentanteId: 3} proveedor
+   * @returns {Object} proveedor creado
+   */
   async function create (proveedor) {
     const result = await TCProveedorModel.create(proveedor)
     return result.toJSON()
   }
 
-  function findByNombre (proveedor) {
+  /**
+   *
+   * @param {string} nombre a buscar
+   * @returns {Array} lista de proveedores encontrados
+   */
+  function findByNombre (nombre) {
     const cond = {
       where:
       {
-        primerNombre: proveedor.primerNombre,
-        segundoNombre: proveedor.segundoNombre
+        nombre
       }
     }
     const result = TCProveedorModel.findOne(cond)
-    return result.toJSON()
+    return result
   }
-
+  /**
+   *
+   * @param {nombre: '', nit: '', direccion: '', descripcion: '', telefono: '', TCRepresentanteId: 1,id: 1} proveedor
+   * @returns {int} cantidad de filas cambiadas
+   */
   async function update (proveedor) {
     const cond = {
       where: {
@@ -35,6 +52,9 @@ module.exports = function setupProveedor (TCProveedorModel) {
     return update
   }
 
+  /**
+   * @returns {Array} todos los proveedores almacenados
+   */
   function findAll () {
     return TCProveedorModel.findAll()
   }
