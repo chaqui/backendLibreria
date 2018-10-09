@@ -66,7 +66,4 @@ module.exports = function setupTCCategoria (TCCategorialModel) {
     update,
     findAll
   }
-
-    
-  
 }

@@ -1,5 +1,6 @@
 'use strict'
-
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op;
 module.exports = function setupProdducto (TCProductoModel) {
   function findById (id) {
     const result = TCProductoModel.findById(id)
@@ -12,26 +13,27 @@ module.exports = function setupProdducto (TCProductoModel) {
     return result.toJSON()
   }
 
-  function findByNombre (prodducto) {
+  function findByNombre (nombre) {
     const cond = {
       where:
       {
-        primerNombre: prodducto.primerNombre,
-        segundoNombre: prodducto.segundoNombre
+        nombre: {
+          [Op.like]: '%' + nombre + '%'
+        }
       }
     }
     const result = TCProductoModel.findOne(cond)
-    return result.toJSON()
+    return result
   }
 
-  async function update (prodducto) {
+  async function update (producto) {
     const cond = {
       where: {
-        id: prodducto.id
+        id: producto.id
       }
     }
 
-    const update = await TCProductoModel.update(prodducto, cond)
+    const update = await TCProductoModel.update(producto, cond)
     return update
   }
 
