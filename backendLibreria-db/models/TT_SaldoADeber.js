@@ -7,7 +7,7 @@ module.exports = function setupTC_SaldoADeber (config) {
   const sequelize = setupDatabase(config)
   return sequelize.define('TC_SaldoADeber', {
     cantidad: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DOUBLE,
       allowNull: false
     },
     fecha: {
