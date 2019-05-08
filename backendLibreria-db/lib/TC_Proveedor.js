@@ -1,5 +1,6 @@
 'use strict'
 
+// complete
 module.exports = function setupProveedor (TCProveedorModel) {
   /**
    * 

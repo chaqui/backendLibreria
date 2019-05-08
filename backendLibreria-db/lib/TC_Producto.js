@@ -12,7 +12,10 @@ module.exports = function setupProdducto (TCProductoModel) {
     const result = await TCProductoModel.create(prodducto)
     return result.toJSON()
   }
-
+  /**
+   *
+   * @param {string} nombre nombre del producto
+   */
   function findByNombre (nombre) {
     const cond = {
       where:
@@ -23,6 +26,32 @@ module.exports = function setupProdducto (TCProductoModel) {
       }
     }
     const result = TCProductoModel.findOne(cond)
+    return result
+  }
+
+  /**
+   * 
+   * @param {*} idMarca 
+   */
+  function findByMarca (idMarca) {
+    const cond = {
+      where:
+      {
+        TC_Marca_idTC_Marca: idMarca
+      }
+    }
+    const result = TCProductoModel.find(cond)
+    return result
+  }
+
+  function findByCategoria (idCategoria) {
+    const cond = {
+      where:
+      {
+        TC_Categoria_idTC_Categoria: idCategoria
+      }
+    }
+    const result = TCProductoModel.find(cond)
     return result
   }
 
@@ -42,6 +71,8 @@ module.exports = function setupProdducto (TCProductoModel) {
   }
 
   return {
+    findByMarca,
+    findByCategoria,
     findById,
     create,
     findByNombre,

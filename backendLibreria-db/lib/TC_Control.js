@@ -1,5 +1,6 @@
 'use strict'
 
+// complete
 module.exports = function setupControl (TCControlModel) {
   function findById (id) {
     const result = TCControlModel.findById(id)

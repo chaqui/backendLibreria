@@ -1,5 +1,5 @@
 'use strict'
-
+// complete
 module.exports = function setupCliente (TCClienteModel) {
   /**
    *

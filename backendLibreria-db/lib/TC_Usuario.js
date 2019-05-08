@@ -1,5 +1,5 @@
 'use strict'
-
+// complete
 module.exports = function setupUsuario (TCUsuarioModel) {
   function findById (id) {
     const result = TCUsuarioModel.findById(id)

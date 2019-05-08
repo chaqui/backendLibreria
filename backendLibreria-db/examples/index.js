@@ -37,25 +37,14 @@ async function run () {
     TTVenta} = await db(config).catch(handleFatalError)
   
   const persona = await TCPersona.create({
-    primerNombre: 'Lucas',
-    segundoNombre: 'Benjamin',
+    primerNombre: 'Ernesto',
+    segundoNombre: 'Fernando',
     primerApellido: 'Paz',
-    segundoApellido: 'cardona',
-    telefono: ' 77605679',
+    segundoApellido: 'paz',
+    telefono: ' 77634645',
     direccion: 'Ciudad'
   }).catch(handleFatalError)
-
-  console.log('--persona--')
   console.log(persona)
-
-  const personas = await TCPersona.findAll().catch(handleFatalError)
-  console.log('--Personas--')
-  console.log(personas)
-
-  const personaId = await TCPersona.findById(1)
-
-  console.log('--persona por id ---')
-  console.log(personaId)
 }
 function handleFatalError (err) {
   console.error(err.message)
